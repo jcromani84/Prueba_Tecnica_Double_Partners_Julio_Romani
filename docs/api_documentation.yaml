@@ -1,0 +1,90 @@
+yaml
+Copy code
+openapi: 3.0.0
+info:
+  title: API de Personas
+  description: API para gestionar personas
+  version: 1.0.0
+paths:
+  /api/personas/consultar:
+    get:
+      summary: Obtener registro activo
+      responses:
+        '200':
+          description: Registro encontrado
+        '404':
+          description: No se encontró el registro
+  /api/personas/insertar:
+    post:
+      summary: Insertar una nueva persona
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                Nombres:
+                  type: string
+                Apellidos:
+                  type: string
+                NumeroIdentificacion:
+                  type: string
+                TipoIdentificacion:
+                  type: string
+                Email:
+                  type: string
+                Salario:
+                  type: number
+                Estado:
+                  type: string
+      responses:
+        '200':
+          description: Registro insertado exitosamente
+        '400':
+          description: Error en la validación
+  /api/personas/actualizar:
+    put:
+      summary: Actualizar un registro existente
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ID:
+                  type: integer
+                Nombres:
+                  type: string
+                Apellidos:
+                  type: string
+                NumeroIdentificacion:
+                  type: string
+                TipoIdentificacion:
+                  type: string
+                Email:
+                  type: string
+                Salario:
+                  type: number
+                Estado:
+                  type: string
+      responses:
+        '200':
+          description: Registro actualizado exitosamente
+        '404':
+          description: Registro no encontrado
+  /api/personas/eliminar:
+    delete:
+      summary: Eliminar un registro
+      parameters:
+        - in: query
+          name: ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Registro eliminado
+        '404':
+          description: Registro no encontrado
